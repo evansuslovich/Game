@@ -6,27 +6,24 @@ import javax.swing.*;
 import java.awt.Color;
 
 
-public class FallingRect extends JFrame{
+public class FallingRect extends JPanel{
     private static final long serialVersionUID = 1L;
 
     private Random rand = new Random(); 
-    private JPanel panel = new JPanel(); 
 
     private int x = 0; 
     private int y = 0; 
 
 
     public FallingRect(){
-        setSize(400,400); 
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
-
-        panel.paintComponents(null); 
+        JFrame frame = new JFrame(); 
+        frame.setSize(400,400); 
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
-        add(panel);
-        setVisible(true); 
+        frame.add(this);
+        frame.setVisible(true); 
     }
 
-    
     public void paintComponent(Graphics g) {
         super.paintComponents(g);
 
@@ -38,7 +35,8 @@ public class FallingRect extends JFrame{
     }
 
     public void draw(Graphics g) {
-        g.setColor(new Color(123,123,123));
+        System.out.println(x + " " + y); 
+        g.setColor(Color.red);
         g.fillRect(x,y,20,20); 
     }
 
