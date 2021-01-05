@@ -1,9 +1,10 @@
 import java.awt.Graphics;
+import java.awt.Color;
+
+import javax.swing.*;
+
 import java.util.Random;
 
-import java.awt.*; 
-import javax.swing.*;
-import java.awt.Color;
 
 
 public class FallingRect extends JPanel{
@@ -13,12 +14,17 @@ public class FallingRect extends JPanel{
 
     private int x = 0; 
     private int y = 0; 
+    
+    private int r1 = 0; 
+    private int r2 = 0; 
+    private int r3 = 0; 
 
 
     public FallingRect(){
         JFrame frame = new JFrame(); 
         frame.setSize(400,400); 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setResizable(false); 
         
         frame.add(this);
         frame.setVisible(true); 
@@ -27,16 +33,20 @@ public class FallingRect extends JPanel{
     public void paintComponent(Graphics g) {
         super.paintComponents(g);
 
-        for(int i = 0; i < 20; i++){
+        for(int i = 0; i < 10; i++){
             x = rand.nextInt(400); 
-            y = rand.nextInt(400); 
+
+            r1 = rand.nextInt(256); 
+            r2 = rand.nextInt(256); 
+            r3 = rand.nextInt(256); 
+
             draw(g);
         }
     }
 
     public void draw(Graphics g) {
         System.out.println(x + " " + y); 
-        g.setColor(Color.red);
+        g.setColor(new Color(r1,r2,r3));
         g.fillRect(x,y,20,20); 
     }
 
