@@ -3,7 +3,7 @@ import java.awt.*;
 public class HitDetection extends JPanel {
     private static final long serialVersionUID = 1L; 
 
-    private Rect r1 = new Rect(112,300);
+    private Rect r1 = new Rect(119,300);
     private Rect r2 = new Rect(100,300); 
 
     public HitDetection(){
