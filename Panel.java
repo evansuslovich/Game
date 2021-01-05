@@ -7,7 +7,6 @@ public class Panel extends JPanel implements MouseListener {
 
     public Panel(){
         addMouseListener(this);
-
     }
 
     @Override
@@ -17,7 +16,7 @@ public class Panel extends JPanel implements MouseListener {
 
     @Override
     public void mousePressed(MouseEvent e) {
-        System.out.println(e.getPoint()); 
+        System.out.println(e.getPoint());  
 
     }
 
@@ -28,7 +27,7 @@ public class Panel extends JPanel implements MouseListener {
 
     @Override
     public void mouseEntered(MouseEvent e){
-        
+
     }
 
     @Override
