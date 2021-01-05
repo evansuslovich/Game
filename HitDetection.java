@@ -1,11 +1,10 @@
 import javax.swing.*; 
 import java.awt.*; 
-import java.awt.Rectangle; 
 public class HitDetection extends JPanel {
     private static final long serialVersionUID = 1L; 
 
-    private Rectangle r1 = new Rectangle(100,100);
-    private Rectangle r2 = new Rectangle(300,300); 
+    private Rect r1 = new Rect(112,300);
+    private Rect r2 = new Rect(100,300); 
 
     public HitDetection(){
         JFrame frame = new JFrame(); 
@@ -26,21 +25,26 @@ public class HitDetection extends JPanel {
         g.setColor(Color.blue);
         g.fillRect(r2.x, r2.y , 20,20); 
 
+        detection();
 
     }
-    public void hitDetection(){
-        if(r1.intersects(r2)){
-            System.out.println("Interest"); 
+    public void detection(){
+        Rectangle rect1 = r1.getBounds(); 
+        Rectangle rect2 = r2.getBounds(); 
+
+        if(rect1.intersects(rect2)){
+            System.out.println("Detection"); 
         }
         else
         {
-            System.out.println("No Interest");
+            System.out.println("No Detection");
         }
     }
 
+
+
     public static void main(String[] args){
-        HitDetection h = new HitDetection(); 
-        h.hitDetection();
-    }
+        new HitDetection();    
+     }
     
 }
