@@ -1,0 +1,12 @@
+public class Rectangle {
+
+    private int x = 0; 
+    private int y = 0; 
+    
+    public Rectangle(int x, int y){
+        this.x = x; 
+        this.y = y; 
+
+    }
+    
+}
