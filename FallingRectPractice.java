@@ -8,7 +8,7 @@ import java.util.Random;
 public class FallingRectPractice extends JPanel{
     private static final long serialVersionUID = 1L; 
 
-    private Rectangle[] rectangles = new Rectangle[10]; 
+    private Rectangle[] rectangles = new Rectangle[1]; 
     private JFrame frame; 
 
     public FallingRectPractice(){
@@ -17,7 +17,8 @@ public class FallingRectPractice extends JPanel{
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
         fillRectangles(); 
-        intersect(); 
+        intersect();
+        //moveRectangles();  
     
 
         frame.add(this); 
@@ -25,16 +26,25 @@ public class FallingRectPractice extends JPanel{
     }
     
     public void fillRectangles(){
-        Random rand = new Random(); 
+        /*Random rand = new Random(); 
    
         for(int i = 0; i < rectangles.length; i++){
             int x = rand.nextInt(400); 
             int y = rand.nextInt(100);  
 
             rectangles[i] = new Rectangle(x,y,10,10);
+            */ 
+        rectangles[0] = new Rectangle(10,10,10,10);
+        
+    }
 
+    public void moveRectangles(){
+        for(int i = 0; i < rectangles.length; i++){
+            rectangles[i].setBounds(rectangles[i].x,rectangles[i].y + 5,rectangles[i].width, rectangles[i].height);
+            repaint(); 
         }
     }
+
     public void paint(Graphics g){
         super.paint(g);
 
@@ -74,7 +84,16 @@ public class FallingRectPractice extends JPanel{
     }
 
     public static void main(String[] args){
-        new FallingRectPractice(); 
+        FallingRectPractice practice = new FallingRectPractice();
+
+        FallingRectPractice practice2 = new FallingRectPractice(); 
+        practice2.moveRectangles();
+        practice2.moveRectangles();
+        practice2.moveRectangles();
+        practice2.moveRectangles();
+        practice2.moveRectangles();
+
+
     }
 }
   
