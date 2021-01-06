@@ -87,11 +87,9 @@ public class FallingRectPractice extends JPanel{
         FallingRectPractice practice = new FallingRectPractice();
 
         FallingRectPractice practice2 = new FallingRectPractice(); 
-        practice2.moveRectangles();
-        practice2.moveRectangles();
-        practice2.moveRectangles();
-        practice2.moveRectangles();
-        practice2.moveRectangles();
+        for(int i = 0; i < 10; i++){
+            practice2.moveRectangles();
+        }
 
 
     }
