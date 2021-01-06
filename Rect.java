@@ -9,6 +9,12 @@ public class Rect{
         this.y = y; 
     }
 
+    public void move(){
+        if(y==400){
+           // this.
+        }
+    }
+
     public Rectangle getBounds(){
         return (new Rectangle(x,y,20,20)); 
  

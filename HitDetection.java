@@ -3,8 +3,10 @@ import java.awt.*;
 public class HitDetection extends JPanel {
     private static final long serialVersionUID = 1L; 
 
-    private Rect r1 = new Rect(119,300);
+    private Rect r1 = new Rect(121,300);
     private Rect r2 = new Rect(100,300); 
+
+    
 
     public HitDetection(){
         JFrame frame = new JFrame(); 
@@ -19,14 +21,11 @@ public class HitDetection extends JPanel {
         super.paint(g); 
 
         g.setColor(Color.red); 
-        
-        g.fillRect(r1.x, r1.y , 20,20); 
-
+        g.fillRect(r1.x, r1.y , 40,40); 
         g.setColor(Color.blue);
-        g.fillRect(r2.x, r2.y , 20,20); 
+        g.fillRect(r2.x, r2.y , 40,40); 
 
         detection();
-
     }
     public void detection(){
         Rectangle rect1 = r1.getBounds(); 
@@ -41,10 +40,7 @@ public class HitDetection extends JPanel {
         }
     }
 
-
-
     public static void main(String[] args){
         new HitDetection();    
      }
-    
 }
