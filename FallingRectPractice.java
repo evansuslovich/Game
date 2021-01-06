@@ -16,7 +16,7 @@ public class FallingRectPractice extends JPanel{
         frame.setSize(400,400); 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
-        fillArray(); 
+        fillRectangles(); 
 
         frame.add(this); 
         frame.setVisible(true); 
@@ -24,17 +24,33 @@ public class FallingRectPractice extends JPanel{
     
     public void fillRectangles(){
         Random rand = new Random(); 
-        int x = 
+        int x = 0; 
+        int y = 0; 
+
+        int width = 10; 
+        int height = 10; 
+
         for(int i = 0; i < rectangles.length; i++){
+            x = rand.nextInt(400); 
+            y = rand.nextInt(400); 
+
+            rectangles[i] = new Rectangle(x,y,width,height);
 
         }
     }
     public void paint(Graphics g){
         super.paint(g);
 
-        g.setColor(Color.black); 
-        //g.fillRect(rectangle1.x,rectangle1.y, rectangle1.width, rectangle1.height);
+        Random rand = new Random(); 
+    
+        for(int i = 0; i < rectangles.length; i++){
+            int r1 = rand.nextInt(256); 
+            int r2 = rand.nextInt(256); 
+            int r3 = rand.nextInt(256); 
 
+            g.setColor(new Color(r1,r2,r3)); 
+            g.fillRect(rectangles[i].x,rectangles[i].y, rectangles[i].width, rectangles[i].height);
+        }
     }
 
 
