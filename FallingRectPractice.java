@@ -9,14 +9,16 @@ public class FallingRectPractice extends JPanel{
     private static final long serialVersionUID = 1L; 
 
     private Rectangle[] rectangles = new Rectangle[10]; 
-
+    private JFrame frame; 
 
     public FallingRectPractice(){
-        JFrame frame = new JFrame(); 
+        frame = new JFrame(); 
         frame.setSize(400,400); 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
         fillRectangles(); 
+        intersect(); 
+    
 
         frame.add(this); 
         frame.setVisible(true); 
@@ -27,7 +29,7 @@ public class FallingRectPractice extends JPanel{
    
         for(int i = 0; i < rectangles.length; i++){
             int x = rand.nextInt(400); 
-            int y = rand.nextInt(100); 
+            int y = rand.nextInt(100);  
 
             rectangles[i] = new Rectangle(x,y,10,10);
 
@@ -45,6 +47,29 @@ public class FallingRectPractice extends JPanel{
 
             g.setColor(new Color(r1,r2,r3)); 
             g.fillRect(rectangles[i].x,rectangles[i].y, rectangles[i].width, rectangles[i].height);
+        }
+
+        //g.setColor(Color.black); 
+        //g.fillRect(0,0, frame.getContentPane().getWidth(), (int)(frame.getContentPane().getHeight()*.26)); 
+    }
+
+    
+
+    public void intersect(){
+        Rectangle rect; 
+        int counter = 0; 
+        for(int x = 0; x < rectangles.length;x++){
+            rect = rectangles[x]; 
+            for(int y = 0; y < rectangles.length; y++){
+                counter++; 
+                if(x != y){
+                    if(rect.intersects(rectangles[y])){
+                        System.out.println("Detection");
+                        System.out.println(counter); 
+
+                    }
+                }
+            }
         }
     }
 
