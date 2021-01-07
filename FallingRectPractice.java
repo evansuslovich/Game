@@ -51,7 +51,6 @@ public class FallingRectPractice extends JPanel implements ActionListener{
                 repaint(); 
             }
         }
-        
     }
 
     @Override
@@ -74,7 +73,15 @@ public class FallingRectPractice extends JPanel implements ActionListener{
         }
 
 
+        timer = new Timer(1000, this);
+        timer.start();
+
+        //g.setColor(Color.black); 
+        //g.fillRect(0,0, frame.getContentPane().getWidth(), (int)(frame.getContentPane().getHeight()*.26)); 
+    
+
     }
+
     public void intersect(){
         Rectangle rect; 
         int counter = 0; 
@@ -96,7 +103,5 @@ public class FallingRectPractice extends JPanel implements ActionListener{
     public static void main(String[] args){
         new FallingRectPractice(); 
     }
-
-   
 }
   
