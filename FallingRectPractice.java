@@ -1,25 +1,32 @@
-import javax.swing.*;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
 
 import java.awt.*;
 import java.awt.event.*;
 
 import java.util.Random;
 
+import javax.swing.Timer; 
+//import java.util.TimerTask;
+//import java.util.Timer;
+
 public class FallingRectPractice extends JPanel implements ActionListener{
     private static final long serialVersionUID = 1L; 
 
-    private Rectangle[] rectangles = new Rectangle[10]; 
+    static Rectangle[] rectangles = new Rectangle[10]; 
+    
     private JFrame frame; 
-    private int counter = 0; 
 
-    Timer time;
+    Timer timer;
+    //TimerTask rectanglesTask; 
+
     public FallingRectPractice(){
         frame = new JFrame(); 
         frame.setSize(400,400); 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
         fillRectangles(); 
-        //intersect();
     
 
         frame.add(this); 
@@ -38,20 +45,18 @@ public class FallingRectPractice extends JPanel implements ActionListener{
     }
 
     public void moveRectangles(){
-        counter++; 
-       
-        for(int i = 0; i < rectangles.length; i++){
-            if(counter <= 3){
-                if(rectangles[i].getY() < 400){
-                    rectangles[i].setLocation(rectangles[i].x, rectangles[i].y + 5);
-                }
+            for(int i = 0; i < rectangles.length; i++){
+            if(rectangles[i].getY() < 400){
+                rectangles[i].setLocation(rectangles[i].x, rectangles[i].y + 5);
                 repaint(); 
-            }
-            else{
-                time.stop(); 
             }
         }
         
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        fillRectangles();
     }
 
     public void paint(Graphics g){
@@ -67,24 +72,9 @@ public class FallingRectPractice extends JPanel implements ActionListener{
             g.setColor(new Color(r1,r2,r3)); 
             g.fillRect(rectangles[i].x,rectangles[i].y, rectangles[i].width, rectangles[i].height);
         }
-        
-        time = new Timer(1000, this);
-        time.start();
 
 
-        //g.setColor(Color.black); 
-        //g.fillRect(0,0, frame.getContentPane().getWidth(), (int)(frame.getContentPane().getHeight()*.26)); 
     }
-
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        moveRectangles(); 
-    }
-    
-
-    
-
     public void intersect(){
         Rectangle rect; 
         int counter = 0; 
@@ -106,5 +96,7 @@ public class FallingRectPractice extends JPanel implements ActionListener{
     public static void main(String[] args){
         new FallingRectPractice(); 
     }
+
+   
 }
   
