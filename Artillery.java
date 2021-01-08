@@ -16,6 +16,10 @@ public class Artillery extends JPanel implements ActionListener {
     private Rectangle artillery = new Rectangle(190, 350, 15, 15);
     private Rectangle bullet = new Rectangle(200,350,3,3); 
 
+    private int x = 0; 
+    private int y = 0; 
+
+
 
 
     Timer timer; 
@@ -63,10 +67,9 @@ public class Artillery extends JPanel implements ActionListener {
         frame.setVisible(true);
     }
 
-    public void shoot(int x, int y){
-        bullet.setLocation(x,y); 
-        repaint(); 
-    
+    public void setLocation(int x, int y){
+        this.x = x; 
+        this.y = y; 
     }
 
   
