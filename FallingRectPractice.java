@@ -58,6 +58,8 @@ public class FallingRectPractice extends JPanel implements ActionListener{
                 }
             }
         }
+
+    // stops the rectangles once they hit a certain number
     public void stopRectangles(int i){
         rectangles[i].setLocation(rectangles[i].x, rectangles[i].y);
         repaint();
