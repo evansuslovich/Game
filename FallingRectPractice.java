@@ -21,29 +21,34 @@ public class FallingRectPractice extends JPanel implements ActionListener{
     Timer timer;
     //TimerTask rectanglesTask; 
 
+
+    
     public FallingRectPractice(){
         frame = new JFrame(); 
         frame.setSize(400,400); 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        createRectangles(); 
         
-        fillRectangles(); 
-    
-
+        timer = new Timer(1000, this);
+        timer.setRepeats(true);
+        timer.start();
+        
         frame.add(this); 
         frame.setVisible(true); 
     }
     
-    public void fillRectangles(){
+
+    // create the rectangles 
+    public void createRectangles(){
         Random rand = new Random(); 
-   
         for(int i = 0; i < rectangles.length; i++){
             int x = rand.nextInt(400); 
             int y = rand.nextInt(100);  
-
             rectangles[i] = new Rectangle(x,y,10,10);
         }
     }
-
+    
+    // move the rectangles down 5 pixels
     public void moveRectangles(){
             for(int i = 0; i < rectangles.length; i++){
             if(rectangles[i].getY() < 400){
@@ -53,14 +58,9 @@ public class FallingRectPractice extends JPanel implements ActionListener{
         }
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        fillRectangles();
-    }
 
     public void paint(Graphics g){
         super.paint(g);
-
         Random rand = new Random(); 
     
         for(int i = 0; i < rectangles.length; i++){
@@ -71,34 +71,20 @@ public class FallingRectPractice extends JPanel implements ActionListener{
             g.setColor(new Color(r1,r2,r3)); 
             g.fillRect(rectangles[i].x,rectangles[i].y, rectangles[i].width, rectangles[i].height);
         }
-
-
-        timer = new Timer(1000, this);
-        timer.start();
-
+    
         //g.setColor(Color.black); 
         //g.fillRect(0,0, frame.getContentPane().getWidth(), (int)(frame.getContentPane().getHeight()*.26)); 
     
 
     }
 
-    public void intersect(){
-        Rectangle rect; 
-        int counter = 0; 
-        for(int x = 0; x < rectangles.length;x++){
-            rect = rectangles[x]; 
-            for(int y = 0; y < rectangles.length; y++){
-                counter++; 
-                if(x != y){
-                    if(rect.intersects(rectangles[y])){
-                        System.out.println("Detection");
-                        System.out.println(counter); 
 
-                    }
-                }
-            }
-        }
+    @Override
+    public void actionPerformed(ActionEvent e){
+        moveRectangles(); 
     }
+
+   
 
     public static void main(String[] args){
         new FallingRectPractice(); 
