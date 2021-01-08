@@ -7,16 +7,27 @@ import java.awt.event.MouseListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.Timer; 
+
 public class Artillery extends JPanel implements ActionListener {
 
     private static final long serialVersionUID = 1L;
     private JFrame frame;
-    private Rectangle artillery = new Rectangle(200, 350, 15, 15);
+    private Rectangle artillery = new Rectangle(190, 350, 15, 15);
+    private Rectangle bullet = new Rectangle(200,350,3,3); 
+
+
+
+    Timer timer; 
 
     public Artillery() {
         frame = new JFrame();
         frame.setSize(400, 400);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        timer = new Timer(100,this); 
+        timer.setRepeats(true); 
+        timer.start(); 
 
         this.addMouseListener(new MouseListener() {
 
@@ -27,7 +38,8 @@ public class Artillery extends JPanel implements ActionListener {
 
             @Override
             public void mousePressed(MouseEvent e) {
-                System.out.println(e.getPoint());
+                shoot(e.getX(),e.getY());
+                // I might have to use an array
             }
 
             @Override
@@ -51,6 +63,13 @@ public class Artillery extends JPanel implements ActionListener {
         frame.setVisible(true);
     }
 
+    public void shoot(int x, int y){
+        bullet.setLocation(x,y); 
+        repaint(); 
+    
+    }
+
+  
     public void paint(Graphics g) {
         // back panel
         g.setColor(new Color(0, 0, 128));
@@ -60,14 +79,21 @@ public class Artillery extends JPanel implements ActionListener {
         g.setColor(new Color(75, 83, 32));
         g.fillRect(artillery.x, artillery.y, artillery.width, artillery.height);
 
+        //bullet
+        g.setColor(Color.black); 
+        g.fillRect(bullet.x,bullet.y,bullet.width,bullet.height); 
+    
+
     }
 
     public static void main(String[] args) {
         new Artillery();
     }
 
+
+
     @Override
-    public void actionPerformed(ActionEvent e) {
+    public void actionPerformed(ActionEvent e){
 
     }
 }
