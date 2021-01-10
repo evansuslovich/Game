@@ -12,7 +12,7 @@ import javax.swing.Timer;
 public class FallingRectPractice extends JPanel implements ActionListener{
 
     private static final long serialVersionUID = 1L; 
-    static Rectangle[] rectangles = new Rectangle[10]; 
+    private Rectangle[] rectangles = new Rectangle[10]; 
     private JFrame frame; 
     Timer timer;
     
