@@ -13,12 +13,20 @@ public class Artillery extends JPanel implements ActionListener {
 
     private static final long serialVersionUID = 1L;
     private JFrame frame;
+
+    
+    //<Rectangle> bullets = new ArrayList<String>(); // Create an ArrayList object
+
     private Rectangle artillery = new Rectangle(190, 350, 15, 15);
     private Rectangle bullet = new Rectangle(200,350,3,3); 
 
     private int x = 0; 
     private int y = 0; 
 
+    private double width = 3; 
+    private double height = 3;
+
+    private boolean isPressed = false; 
 
 
 
@@ -42,7 +50,8 @@ public class Artillery extends JPanel implements ActionListener {
 
             @Override
             public void mousePressed(MouseEvent e) {
-                shoot(e.getX(),e.getY());
+                isPressed = true; 
+                setLocation(e.getX(),e.getY());
                 // I might have to use an array
             }
 
@@ -72,6 +81,45 @@ public class Artillery extends JPanel implements ActionListener {
         this.y = y; 
     }
 
+    public void moveBullet(){
+        double x1 = 0; 
+        double y1 = 0; 
+
+        double x2 = 0; 
+        double y2 = 0;
+
+        if(isPressed){
+
+            if(x == bullet.x){
+                y2++; 
+                bullet.setRect(x2,y2,width,height); 
+            }
+    
+            x1 = Double.valueOf(x); 
+            y1 = Double.valueOf(y); 
+    
+            x2 = Double.valueOf(bullet.x);  
+            y2 = Double.valueOf(bullet.y * -1); 
+    
+            double slope = (y2 - y1) / (x2 - x1);
+    
+            if(slope < 0){
+                x2+=-1;
+                y2+=slope; 
+            }
+            else{
+                x2+=1; 
+                y2+=slope;
+            }
+
+           
+            bullet.setRect(x2,y2,width,height);
+            repaint();
+        }
+
+       
+    }
+
   
     public void paint(Graphics g) {
         // back panel
@@ -97,6 +145,6 @@ public class Artillery extends JPanel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e){
-
+        moveBullet(); 
     }
 }
