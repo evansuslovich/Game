@@ -1,13 +1,12 @@
-import java.awt.*; 
-import javax.swing.*; 
-import java.awt.Color; 
+import java.awt.*;
+import java.awt.Color;
+import java.awt.event.*;
 
-import java.awt.event.MouseEvent; 
-import java.awt.event.MouseListener;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
+import javax.swing.*;
 import javax.swing.Timer; 
+
+import java.util.LinkedList;
+
 
 public class Artillery extends JPanel implements ActionListener {
 
@@ -15,13 +14,13 @@ public class Artillery extends JPanel implements ActionListener {
     private JFrame frame;
 
     
-    //<Rectangle> bullets = new ArrayList<String>(); // Create an ArrayList object
+    LinkedList<Bullets> bullets = new LinkedList<Bullets>(); 
 
     private Rectangle artillery = new Rectangle(190, 350, 15, 15);
     private Rectangle bullet = new Rectangle(200,350,3,3); 
 
-    private int x = 0; 
-    private int y = 0; 
+    private double x = 0; 
+    private double y = 0; 
 
     private double width = 3; 
     private double height = 3;
@@ -51,8 +50,10 @@ public class Artillery extends JPanel implements ActionListener {
             @Override
             public void mousePressed(MouseEvent e) {
                 isPressed = true; 
+
+                
                 setLocation(e.getX(),e.getY());
-                // I might have to use an array
+                
             }
 
             @Override
@@ -82,11 +83,11 @@ public class Artillery extends JPanel implements ActionListener {
     }
 
     public void moveBullet(){
-        double x1 = 0; 
-        double y1 = 0; 
+        double x1 = x; 
+        double y1 = y; 
 
-        double x2 = 0; 
-        double y2 = 0;
+        double x2 = 200; 
+        double y2 = 350;
 
         if(isPressed){
 
