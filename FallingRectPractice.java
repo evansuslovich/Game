@@ -97,6 +97,7 @@ public class FallingRectPractice extends JPanel implements ActionListener{
 
     public static void main(String[] args){
         new FallingRectPractice(); 
+        System.out.println("Commit from new computer");
     }
 }
   
