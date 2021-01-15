@@ -105,7 +105,8 @@ public class Artillery extends JPanel implements ActionListener {
             double slope = (y2 - y1) / (x2 - x1);
     
             if(slope < 0){
-                x2+=-1;
+                x2+=-1; // try and work on the bug for moving 
+
                 y2+=slope; 
             }
             else{
