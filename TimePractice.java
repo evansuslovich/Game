@@ -19,11 +19,7 @@ import java.util.Timer;
             Timer timer = new Timer(); 
             timer.schedule(task, 1000, 1000); 
 
-            /*
-            try{
-                Thread.sleep(10000); 
-            }catch (InterruptedException exc){}
-            timer.cancel(); */
+          
 
     }
 }

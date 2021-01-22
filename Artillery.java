@@ -139,14 +139,16 @@ public class Artillery extends JPanel implements ActionListener {
 
     }
 
+    @Override
+    public void actionPerformed(ActionEvent e){
+        moveBullet(); 
+    }
+
     public static void main(String[] args) {
         new Artillery();
     }
 
 
 
-    @Override
-    public void actionPerformed(ActionEvent e){
-        moveBullet(); 
-    }
+   
 }
