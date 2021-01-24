@@ -43,8 +43,6 @@ public class Artillery extends JPanel implements ActionListener {
         timer.setRepeats(true); 
         timer.start(); 
 
-        setLocation(200,0); 
-        isPressed = true;
         this.addMouseListener(new MouseListener() {
 
             @Override
@@ -54,12 +52,12 @@ public class Artillery extends JPanel implements ActionListener {
 
             @Override
             public void mousePressed(MouseEvent e) {
-                /*isPressed = false;
+                isPressed = false;
                 if(e.getY() < 350){
                     isPressed = true; 
                 }
                 setLocation(e.getX(),e.getY());
-                */
+                
 
             }
 

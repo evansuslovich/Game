@@ -1,10 +1,10 @@
 import java.awt.*; 
 
 public class Bullets {
-    private int x = 0; 
-    private int y = 0;
+    private int x1 = 0; 
+    private int y1 = 0;
 
-    public Bullets(int x, int y){
+    public Bullets(int x1, int y1, int x2, int y2){
         this.x = x; 
         this.y = y;
     }
