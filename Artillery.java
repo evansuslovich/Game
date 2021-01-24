@@ -19,8 +19,12 @@ public class Artillery extends JPanel implements ActionListener {
     private Rectangle artillery = new Rectangle(190, 350, 15, 15);
     private Rectangle bullet = new Rectangle(200,350,3,3); 
 
-    private double x = 0; 
-    private double y = 0; 
+   
+    private double x2 = 0; 
+    private double y2 = 0; 
+
+    private double slope = 0; 
+
 
     private double size = 3; 
 
@@ -39,7 +43,7 @@ public class Artillery extends JPanel implements ActionListener {
         timer.setRepeats(true); 
         timer.start(); 
 
-        setLocation(300,0); 
+        setLocation(200,0); 
         isPressed = true;
         this.addMouseListener(new MouseListener() {
 
@@ -81,51 +85,51 @@ public class Artillery extends JPanel implements ActionListener {
     }
 
     public void setLocation(int x, int y){
-        this.x = x; 
-        this.y = y; 
+     
+        double x1 = Double.valueOf(x); // x position of the mouse
+        double y1 = Double.valueOf(y); // y posiiton of the mouse
+
+        x2 = Double.valueOf(bullet.x);  // x position of the bullet
+        y2 = Double.valueOf(bullet.y); // y position of the bullet '
+        
+        slope = (y1 - y2) / (x2 - x1); 
+
+        if(x1 == bullet.x){
+            slope = 0; 
+        }
+
+        
     }
 
     public void moveBullet()
     {
-        double x1 = Double.valueOf(x); // x position of the mouse
-        double y1 = Double.valueOf(y); // y posiiton of the mouse
-
-        double x2 = Double.valueOf(bullet.x);  // x position of the bullet
-        double y2 = Double.valueOf(bullet.y); // y position of the bullet 
-
-        double slope = (y1 - y2) / (x2 - x1); 
-
-        /*if(isPressed) // if the mouse is pressed (true) --> e.getY() < 350 
+        
+        if(isPressed) // if the mouse is pressed (true) --> e.getY() < 350 
         {
-            if(x1 == bullet.x) // if the x posiiton of the mouse is the same as the bullet then it will only go straight up 
-            {
-                y2++; 
-                bullet.setRect(x2,y2,size,size); 
-                repaint();             
-            }
-            */
-            
-           
-            //if(slope > 0){ // if the slope is positive 
+        
+            if(slope > 0){ // if the slope is positive 
                 System.out.println(slope); 
-
                 x2 += 1;
                 y2 -= slope; 
                 bullet.setRect(x2,y2,size,size); 
                 repaint(); 
-           // }
-            /*if(slope < 0) /// if the slope is negative
+            }
+            if(slope < 0){ /// if the slope is negative
                 System.out.println(slope); 
 
                 x2 -= 1; 
                 y2 += slope; 
                 bullet.setRect(x2,y2,size,size); 
                 repaint(); 
-            }*/
+            }
+            else
+            {
+                y2--; 
+                bullet.setRect(x2,y2,size,size); 
+                repaint(); 
+            }
         }
-        //}
-
-    //}
+    }
         
 
 
