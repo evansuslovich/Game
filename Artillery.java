@@ -22,8 +22,7 @@ public class Artillery extends JPanel implements ActionListener {
     private double x = 0; 
     private double y = 0; 
 
-    private double width = 3; 
-    private double height = 3;
+    private double size = 3; 
 
     private boolean isPressed = false; 
 
@@ -40,6 +39,8 @@ public class Artillery extends JPanel implements ActionListener {
         timer.setRepeats(true); 
         timer.start(); 
 
+        setLocation(0,0); 
+        isPressed = true;
         this.addMouseListener(new MouseListener() {
 
             @Override
@@ -49,11 +50,13 @@ public class Artillery extends JPanel implements ActionListener {
 
             @Override
             public void mousePressed(MouseEvent e) {
-                isPressed = true; 
-
-                
+                /*isPressed = false;
+                if(e.getY() < 350){
+                    isPressed = true; 
+                }
                 setLocation(e.getX(),e.getY());
-                
+                */
+
             }
 
             @Override
@@ -82,45 +85,52 @@ public class Artillery extends JPanel implements ActionListener {
         this.y = y; 
     }
 
-    public void moveBullet(){
-        double x1 = x; 
-        double y1 = y; 
+    public void moveBullet()
+    {
+        double x1 = Double.valueOf(x); // x position of the mouse
+        double y1 = Double.valueOf(y); // y posiiton of the mouse
 
-        double x2 = 200; 
-        double y2 = 350;
+        double x2 = Double.valueOf(bullet.x);  // x position of the bullet
+        double y2 = Double.valueOf(bullet.y); // y position of the bullet 
 
-        if(isPressed){
+        double slope = (y2 - y1) / (x2 - x1); 
 
-            if(x == bullet.x){
+        /*if(isPressed) // if the mouse is pressed (true) --> e.getY() < 350 
+        {
+            if(x1 == bullet.x) // if the x posiiton of the mouse is the same as the bullet then it will only go straight up 
+            {
                 y2++; 
-                bullet.setRect(x2,y2,width,height); 
+                bullet.setRect(x2,y2,size,size); 
+                repaint();             
             }
-    
-            x1 = Double.valueOf(x); 
-            y1 = Double.valueOf(y); 
-    
-            x2 = Double.valueOf(bullet.x);  
-            y2 = Double.valueOf(bullet.y * -1); 
-    
-            double slope = (y2 - y1) / (x2 - x1);
-    
-            if(slope < 0){
-                x2+=-1; // try and work on the bug for moving 
+            */
 
-                y2+=slope; 
-            }
-            else{
-                x2+=1; 
-                y2+=slope;
-            }
 
-           
-            bullet.setRect(x2,y2,width,height);
-            repaint();
-        }
+            if(slope > 0){ // if the slope is negative 
+                System.out.println("negative"); 
+
+                x2 += -1; 
+                y2 += slope; 
+                bullet.setRect(x2,y2,size,size); 
+                repaint(); 
+            }
+            else // if the the slope is positive
+            { 
+                System.out.println("positive"); 
+                x2 += 1; 
+                y2 -= slope; 
+                bullet.setRect(x2,y2,size,size); 
+                repaint(); 
+            }
+            
+        //}
+
+    }
+        
+
 
        
-    }
+    
 
   
     public void paint(Graphics g) {
@@ -148,7 +158,4 @@ public class Artillery extends JPanel implements ActionListener {
         new Artillery();
     }
 
-
-
-   
 }
