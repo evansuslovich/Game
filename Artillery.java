@@ -39,7 +39,7 @@ public class Artillery extends JPanel implements ActionListener {
         timer.setRepeats(true); 
         timer.start(); 
 
-        setLocation(0,0); 
+        setLocation(300,0); 
         isPressed = true;
         this.addMouseListener(new MouseListener() {
 
@@ -93,7 +93,7 @@ public class Artillery extends JPanel implements ActionListener {
         double x2 = Double.valueOf(bullet.x);  // x position of the bullet
         double y2 = Double.valueOf(bullet.y); // y position of the bullet 
 
-        double slope = (y2 - y1) / (x2 - x1); 
+        double slope = (y1 - y2) / (x2 - x1); 
 
         /*if(isPressed) // if the mouse is pressed (true) --> e.getY() < 350 
         {
@@ -104,28 +104,28 @@ public class Artillery extends JPanel implements ActionListener {
                 repaint();             
             }
             */
+            
+           
+            //if(slope > 0){ // if the slope is positive 
+                System.out.println(slope); 
 
-
-            if(slope > 0){ // if the slope is negative 
-                System.out.println("negative"); 
-
-                x2 += -1; 
-                y2 += slope; 
-                bullet.setRect(x2,y2,size,size); 
-                repaint(); 
-            }
-            else // if the the slope is positive
-            { 
-                System.out.println("positive"); 
-                x2 += 1; 
+                x2 += 1;
                 y2 -= slope; 
                 bullet.setRect(x2,y2,size,size); 
                 repaint(); 
-            }
-            
+           // }
+            /*if(slope < 0) /// if the slope is negative
+                System.out.println(slope); 
+
+                x2 -= 1; 
+                y2 += slope; 
+                bullet.setRect(x2,y2,size,size); 
+                repaint(); 
+            }*/
+        }
         //}
 
-    }
+    //}
         
 
 
