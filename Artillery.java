@@ -20,10 +20,6 @@ public class Artillery extends JPanel implements ActionListener {
     private Rectangle bullet = new Rectangle(200,350,3,3); 
 
    
-    private double x2 = 0; 
-    private double y2 = 0; 
-
-    private double slope = 0; 
 
 
     private double size = 3; 
@@ -105,24 +101,24 @@ public class Artillery extends JPanel implements ActionListener {
             Bullet bul = bullets.get(i); 
             if(bul.isPressed()){ // if mouse is pressed
 
-                if(slope > 0){ // if the slope is positive 
+                if(bul.getSlope() > 0){ // if the slope is positive 
                     bul.setX2(bul.getX2() + 1);
                     bul.setY2(bul.getY2() - bul.getSlope());
-                    bul.setRect(x2,y2,size,size); 
+                    bul.setRect(bul.getX2(),bul.getY2(),size,size); 
                     repaint(); 
                 }
 
-                if(slope < 0){ /// if the slope is negative
+                if(bul.getSlope() < 0){ /// if the slope is negative
 
                     bul.setX2(bul.getX2() - 1); 
-                    bul.setY2(bul.getY2() + slope); 
-                    bul.setRect(x2,y2,size,size); 
+                    bul.setY2(bul.getY2() + bul.getSlope()); 
+                    bul.setRect(bul.getX2(),bul.getY2(),size,size); 
                     repaint(); 
                 }
                 else
                 {
                     bul.setY2(bul.getY2() - 3);
-                    bul.setRect(x2,y2,size,size); 
+                    bul.setRect(bul.getX2(),bul.getY2(),size,size); 
                     repaint(); 
                 }
             }
