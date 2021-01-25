@@ -1,7 +1,10 @@
-import java.awt.*; 
+import java.awt.*;
 
-public class Bullet {
-    private double x1 = 0; 
+public class Bullet extends Rectangle{
+
+    private static final long serialVersionUID = -1L;
+
+    private double x1 = 0;
     private double y1 = 0;
 
     private double x2 = 200; 
@@ -9,9 +12,9 @@ public class Bullet {
 
     private boolean isPressed; 
 
-    public Bullet(int x, int y, boolean isPressed){
-        x1 = Double.valueOf(x); 
-        y1 = Double.valueOf(y); 
+    public Bullet(double x1, double y1, boolean isPressed){
+        this.x1 = x;
+        this.y1 = y;
         this.isPressed = isPressed;
 
     }
@@ -43,9 +46,7 @@ public class Bullet {
         return isPressed;
     }
 
-    public Rectangle getRectangle(){
-
-    }
+    
 
     
 
