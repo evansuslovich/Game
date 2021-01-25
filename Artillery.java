@@ -55,7 +55,7 @@ public class Artillery extends JPanel implements ActionListener {
                 isPressed = false;
                 if(e.getY() < 350){
                     isPressed = true; 
-                    bullets.add(new Bullet( e.getX(), e.getY(), isPressed)); 
+                    bullets.add(new Bullet( Double.valueOf(e.getX()), Double.valueOf(e.getY()), isPressed)); 
                 }
                 
 
@@ -144,7 +144,7 @@ public class Artillery extends JPanel implements ActionListener {
 
         for(int i = 0; i < bullets.size(); i++){
             g.setColor(Color.orange); 
-            g.fillRect(200,350,3,3);
+            g.fillRect(200,350,3,3); 
         }
     
 
