@@ -14,7 +14,7 @@ public class Artillery extends JPanel implements ActionListener {
     private JFrame frame;
 
     
-    LinkedList<Bullets> bullets = new LinkedList<Bullets>(); 
+    LinkedList<Bullet> bullets = new LinkedList<Bullet>(); 
 
     private Rectangle artillery = new Rectangle(190, 350, 15, 15);
     private Rectangle bullet = new Rectangle(200,350,3,3); 
@@ -55,8 +55,8 @@ public class Artillery extends JPanel implements ActionListener {
                 isPressed = false;
                 if(e.getY() < 350){
                     isPressed = true; 
+                    bullets.add(new Bullet( e.getX(), e.getY(), isPressed)); 
                 }
-                setLocation(e.getX(),e.getY());
                 
 
             }
@@ -82,7 +82,7 @@ public class Artillery extends JPanel implements ActionListener {
         frame.setVisible(true);
     }
 
-    public void setLocation(int x, int y){
+    /*public void setLocation(int x, int y){
      
         double x1 = Double.valueOf(x); // x position of the mouse
         double y1 = Double.valueOf(y); // y posiiton of the mouse
@@ -95,45 +95,39 @@ public class Artillery extends JPanel implements ActionListener {
         if(x1 == bullet.x){
             slope = 0; 
         }
-
-        
     }
+    */
 
     public void moveBullet()
     {
-        
-        if(isPressed) // if the mouse is pressed (true) --> e.getY() < 350 
-        {
-        
-            if(slope > 0){ // if the slope is positive 
-                System.out.println(slope); 
-                x2 += 1;
-                y2 -= slope; 
-                bullet.setRect(x2,y2,size,size); 
-                repaint(); 
-            }
-            if(slope < 0){ /// if the slope is negative
-                System.out.println(slope); 
+        for(int i = 0; i < bullets.size(); i++){ // go through the list
 
-                x2 -= 1; 
-                y2 += slope; 
-                bullet.setRect(x2,y2,size,size); 
-                repaint(); 
-            }
-            else
-            {
-                y2--; 
-                bullet.setRect(x2,y2,size,size); 
-                repaint(); 
+            Bullet bul = bullets.get(i); 
+            if(bul.isPressed()){ // if mouse is pressed
+
+                if(slope > 0){ // if the slope is positive 
+                    bul.setX2(bul.getX2() + 1);
+                    bul.setY2(bul.getY2() - bul.getSlope());
+                    bul.setRect(x2,y2,size,size); 
+                    repaint(); 
+                }
+
+                if(slope < 0){ /// if the slope is negative
+
+                    bul.setX2(bul.getX2() - 1); 
+                    bul.setY2(bul.getY2() + slope); 
+                    bul.setRect(x2,y2,size,size); 
+                    repaint(); 
+                }
+                else
+                {
+                    bul.setY2(bul.getY2() - 3);
+                    bul.setRect(x2,y2,size,size); 
+                    repaint(); 
+                }
             }
         }
     }
-        
-
-
-       
-    
-
   
     public void paint(Graphics g) {
         // back panel
@@ -147,6 +141,11 @@ public class Artillery extends JPanel implements ActionListener {
         //bullet
         g.setColor(Color.black); 
         g.fillRect(bullet.x,bullet.y,bullet.width,bullet.height); 
+
+        for(int i = 0; i < bullets.size(); i++){
+            g.setColor(Color.orange); 
+            g.fillRect(200,350,3,3);
+        }
     
 
     }
