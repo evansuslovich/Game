@@ -1,8 +1,5 @@
 import java.awt.*;
-
-public class Bullet extends Rectangle{
-
-    private static final long serialVersionUID = -1L;
+public class Bullet{
 
     private double x1 = 0;
     private double y1 = 0;
@@ -13,8 +10,8 @@ public class Bullet extends Rectangle{
     private boolean isPressed; 
 
     public Bullet(double x1, double y1, boolean isPressed){
-        this.x1 = x;
-        this.y1 = y;
+        this.x1 = x1;
+        this.y1 = y1;
         this.isPressed = isPressed;
 
     }
@@ -45,6 +42,12 @@ public class Bullet extends Rectangle{
     public boolean isPressed(){
         return isPressed;
     }
+
+    public Rectangle getRectangle(){
+        return new Rectangle((int)getX2(), (int)getY2(), 3,3);
+    }
+
+    
 
     
 
